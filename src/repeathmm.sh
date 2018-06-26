@@ -16,7 +16,7 @@ main() {
 
     # Run RepeatHMM 100x using HTT settings
     # -v mounts the home directory to /data in the docker container
-    for i in {1..2}; do
+    for i in {1..100}; do
         dx-docker run -v $HOME:/data mokaguys/repeathmm:v1.0 \
             BAMinput --Onebamfile /data/$bam_name \
             --hg hg19 --hgfile /data/hg19/hg19.fa \
