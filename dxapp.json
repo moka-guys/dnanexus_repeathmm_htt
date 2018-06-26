@@ -1,0 +1,72 @@
+{
+  "name": "repeatHMM_htt",
+  "title": "repeatHMM_htt",
+  "summary": "Counts HTT CAG repeats in Oxford Nanopore sequencing data",
+  "dxapi": "1.0.0",
+  "properties": {
+    "github release": "v1.0"
+  },
+  "inputSpec": [
+    {
+      "name": "bam",
+      "label": "BAM",
+      "help": "BAM file",
+      "class": "file",
+      "patterns": ["*.bam"],
+      "optional": false
+    },
+    {
+      "name": "bai",
+      "label": "BAM index",
+      "help": "BAM index file",
+      "class": "file",
+      "patterns": ["*bai"],
+      "optional": false
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "repeathmm_output",
+      "label": "RepeatHMM ouput",
+      "help": "Full output from RepeatHMM",
+      "class": "array:file",
+      "patterns": ["*.tsv"]
+    },
+    {
+      "name": "results_summary",
+      "label": "Results summary",
+      "help": "Summary of repeatHMM results",
+      "class": "file",
+      "patterns": ["*.csv"]
+    }    
+  ],
+  "runSpec": {
+    "file": "src/repeathmm.sh",
+    "assetDepends": [
+      {
+        "project": "project-ByfFPz00jy1fk6PjpZ95F27J",
+        "folder": "/Apps/Docker",
+        "name": "mokaguys/repeathmm:v1.0",
+        "version": "0.0.1"
+      }
+    ],
+    "systemRequirementsByRegion": {
+      "aws:us-east-1": {
+        "main": {
+          "instanceType": "mem2_ssd1_x2"
+        }
+      }
+    },
+    "systemRequirements": {
+      "*": {
+        "instanceType": "mem2_ssd1_x2"
+      }
+    },
+    "release": "14.04",
+    "interpreter": "bash",
+    "distribution": "Ubuntu"
+  },
+  "access": {
+    "allProjects": "VIEW"
+  }
+}
